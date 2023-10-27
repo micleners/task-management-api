@@ -7,6 +7,12 @@ import { CreateTaskDto } from './dto/create-task.dto';
 export class TasksService {
   private tasks: Task[] = [] as Task[];
 
+  updateTaskStatus(id: string, status: TaskStatus): Task {
+    const task = this.tasks.find((task) => task.id === id);
+    task.status = status;
+    return task;
+  }
+
   getTaskById(id: string): Task {
     const task = this.tasks.find((task) => task.id === id);
     if (!task) {
