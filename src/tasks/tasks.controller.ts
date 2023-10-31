@@ -31,11 +31,6 @@ export class TasksController {
     return this.tasksService.getTaskById(params.id);
   }
 
-  @Delete(':id')
-  deleteTaskById(@Param() params: any): void {
-    this.tasksService.deleteTaskById(params.id);
-  }
-
   @Post()
   createTask(@Body() createTaskDto: CreateTaskDto): Task {
     return this.tasksService.createTask(createTaskDto);
@@ -44,5 +39,10 @@ export class TasksController {
   @Patch(':id/status')
   updateTaskStatus(@Param() params: any, @Body() body: any): Task {
     return this.tasksService.updateTaskStatus(params.id, body.status);
+  }
+
+  @Delete(':id')
+  deleteTaskById(@Param() params: any): void {
+    this.tasksService.deleteTaskById(params.id);
   }
 }

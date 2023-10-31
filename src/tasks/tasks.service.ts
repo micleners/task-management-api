@@ -8,6 +8,10 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 export class TasksService {
   private tasks: Task[] = [] as Task[];
 
+  getAllTasks(): Task[] {
+    return this.tasks;
+  }
+
   getTasksWithFilters(query: GetTasksFilterDto): Task[] {
     const { status, search } = query;
 
@@ -29,26 +33,12 @@ export class TasksService {
     return tasks;
   }
 
-  updateTaskStatus(id: string, status: TaskStatus): Task {
-    const task = this.tasks.find((task) => task.id === id);
-    task.status = status;
-    return task;
-  }
-
   getTaskById(id: string): Task {
     const task = this.tasks.find((task) => task.id === id);
     if (!task) {
       throw new Error('Task not found');
     }
     return task;
-  }
-
-  deleteTaskById(id: string): void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
-
-  getAllTasks(): Task[] {
-    return this.tasks;
   }
 
   createTask(createTaskDto: CreateTaskDto): Task {
@@ -61,5 +51,14 @@ export class TasksService {
     console.log(task);
     this.tasks.push(task);
     return task;
+  }
+  updateTaskStatus(id: string, status: TaskStatus): Task {
+    const task = this.tasks.find((task) => task.id === id);
+    task.status = status;
+    return task;
+  }
+
+  deleteTaskById(id: string): void {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }
