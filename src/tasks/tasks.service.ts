@@ -48,7 +48,6 @@ export class TasksService {
       status: TaskStatus.OPEN,
     };
 
-    console.log(task);
     this.tasks.push(task);
     return task;
   }
@@ -59,6 +58,7 @@ export class TasksService {
   }
 
   deleteTaskById(id: string): void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+    const foundTask = this.getTaskById(id);
+    this.tasks = this.tasks.filter((task) => task.id !== foundTask.id);
   }
 }
