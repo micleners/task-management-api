@@ -61,8 +61,8 @@ export class TasksService {
   //   return task;
   // }
 
-  // deleteTaskById(id: string): void {
-    //   const foundTask = this.getTaskById(id);
-    //   this.tasks = this.tasks.filter((task) => task.id !== foundTask.id);
-  // }
+  async deleteTaskById(id: string): Promise<void> {
+    const foundTask = await this.getTaskById(id);
+    await this.taskRepository.remove(foundTask);
+  }
 }
