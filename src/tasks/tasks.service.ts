@@ -51,16 +51,10 @@ export class TasksService {
     return foundTask;
   }
 
-  // createTask(createTaskDto: CreateTaskDto): Task {
-  //   const task: Task = {
-  //     ...createTaskDto,
-  //     id: uuid(),
-  //     status: TaskStatus.OPEN,
-  //   };
+  createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.taskRepository.createTask(createTaskDto);
+  }
 
-  //   this.tasks.push(task);
-  //   return task;
-  // }
   // updateTaskStatus(id: string, status: TaskStatus): Task {
   //   const task = this.getTaskById(id);
   //   task.status = status;
@@ -68,7 +62,7 @@ export class TasksService {
   // }
 
   // deleteTaskById(id: string): void {
-  //   const foundTask = this.getTaskById(id);
-  //   this.tasks = this.tasks.filter((task) => task.id !== foundTask.id);
+    //   const foundTask = this.getTaskById(id);
+    //   this.tasks = this.tasks.filter((task) => task.id !== foundTask.id);
   // }
 }
