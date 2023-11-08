@@ -21,7 +21,7 @@ export class TasksController {
   // @Get()
   // getTasks(@Query() query: GetTasksFilterDto): Task[] {
   //   if (Object.keys(query).length) {
-  //     return this.tasksService.getTasksWithFilters(query);
+    //     return this.tasksService.getTasksWithFilters(query);
   //   }
   //   return this.tasksService.getAllTasks();
   // }
@@ -36,13 +36,13 @@ export class TasksController {
     return this.tasksService.createTask(createTaskDto);
   }
 
-  // @Patch(':id/status')
-  // updateTaskStatus(
-  //   @Param('id') id: string,
-  //   @Body() updateTaskStatusDto: UpdateTaskStatusDto,
-  // ): Task {
-  //   return this.tasksService.updateTaskStatus(id, updateTaskStatusDto.status);
-  // }
+  @Patch(':id/status')
+  updateTaskStatus(
+    @Param('id') id: string,
+    @Body() updateTaskStatusDto: UpdateTaskStatusDto,
+  ): Promise<Task> {
+    return this.tasksService.updateTaskStatus(id, updateTaskStatusDto.status);
+  }
 
   @Delete(':id')
   async deleteTaskById(@Param() params: any): Promise<void> {
